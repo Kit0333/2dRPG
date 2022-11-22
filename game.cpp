@@ -1,5 +1,4 @@
 #include <headers/game.hpp>
-#include <headers/board.hpp>
 #include <iostream>
 GameState Game::getGameState(){
     return m_gameState;
