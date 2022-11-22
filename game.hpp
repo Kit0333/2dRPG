@@ -33,11 +33,11 @@ private:
     void UserScreenSize(int&width, int &height);
 
     GameState m_gameState;
-
+    
     SDL_Window* m_window;
 
     SDL_Renderer* m_renderer;
-
+    Map *_map;
 };
  
   
