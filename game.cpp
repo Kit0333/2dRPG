@@ -1,4 +1,5 @@
 #include <headers/game.hpp>
+#include <headers/map.hpp>
 #include <iostream>
 GameState Game::getGameState(){
     return m_gameState;
@@ -8,30 +9,23 @@ void Game::gameStateChange(GameState x){
     m_gameState=x;
 };
 
-Player Game::getActualPlayer(){
-    return m_player;
-};
 
-void Game::playerSwitch(){
-    if (m_player==Player::J1){
-        m_player=Player::J2;
-    }
-    else{
-        m_player=Player::J1;
-    }
-}
+
 
 Game::Game(const char* title,Uint32 flags,int &width,int &height) {
     SDL_Init(SDL_INIT_EVERYTHING);
     
     UserScreenSize(width,height);
-    m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, width,height, flags);
-    m_renderer = SDL_CreateRenderer(m_window, -1, 0);
-    m_gameState = GameState::PLAY;
-    m_player=Player::J1;
+    _window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, width,height, flags);
+    _renderer = SDL_CreateRenderer(m_window, -1, 0);
+    _gameState = GameState::PLAY;
+
+    _map=New Map();
 };
 
-Game::~Game() {};
+Game::~Game() {
+    delete _map;
+};
 
 void Game::UserScreenSize(int &width,int &height){
     //the method modify the width and height depending on the size of the user's screen
